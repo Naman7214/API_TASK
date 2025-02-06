@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "a1730150-47c3-4279-9d88-c77b37009106",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "41331416"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Naman\",\n    \"email\":\"namanagnihotri280@gmail.com\",\n    \"role\": \"buyer\",\n    \"password\": \"Naman\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://0.0.0.0:8000/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"namanagnihotri280@gmail.com\",\n    \"password\": \"Naman\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://0.0.0.0:8000/auth/login"
+			},
+			"response": []
+		}
+	]
+}

@@ -34,6 +34,10 @@ class AuthService:
     async def authenticate_user(self, email: str, password: str) -> dict | None:
         """Authenticate user by email and password."""
         user = await self.user_repo.find_by_email(email)
+        print(password)
+    
+        print(user['password'])
+        print("after hashing:", pwd_context.hash(password))
         if user and self.verify_password(password, user["password"]):
             return user
         return None

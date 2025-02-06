@@ -1,10 +1,14 @@
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 import jwt
-from config.settings import JWT_SECRET, JWT_ALGORITHM, JWT_EXPIRATION
+from config.settings import settings
 from repositories.user_repository import UserRepository
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+JWT_SECRET = settings.JWT_SECRET
+JWT_ALGORITHM = settings.JWT_ALGORITHM
+JWT_EXPIRATION = settings.JWT_EXPIRATION
 
 class AuthService:
     def __init__(self, user_repo: UserRepository):

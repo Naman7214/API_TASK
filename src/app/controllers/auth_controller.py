@@ -14,13 +14,10 @@ auth_service = AuthService(user_repo)
 @router.post("/register")
 async def register(user_data: UserRegister):
     """Registers a new user."""
-    existing_user = await auth_service.find_user_by_email(user_data.email)
-    if existing_user:
-        raise HTTPException(status_code=400, detail="Email already registered")
+
 
     hashed_password = auth_service.hash_password(user_data.password)
     
-    # ✅ Using `model_dump()` instead of `.dict()`
     user_dict = user_data.model_dump()
     user_dict["password"] = hashed_password  # Replace plain password with hashed one
 

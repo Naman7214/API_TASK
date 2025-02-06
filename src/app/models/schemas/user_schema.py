@@ -21,4 +21,5 @@ class UserUpdate(BaseModel):
 class UserRegister(BaseModel):
     name: str
     email: EmailStr
+    role: Literal["admin", "buyer", "seller"]
     password: str

@@ -44,14 +44,14 @@ async def shutdown_db():
     app.mongodb_client.close()
 
 # Include Controllers (Routes)
-app.include_router(auth_controller.router, prefix="/auth", tags=["Auth"])
-app.include_router(user_controller.router, prefix="/users", tags=["Users"])
-app.include_router(admin_controller.router, prefix="/admin", tags=["Admin"])
-app.include_router(product_controller.router, prefix="/products", tags=["Products"])
-app.include_router(cart_controller.router, prefix="/cart", tags=["Cart"])
-app.include_router(order_controller.router, prefix="/orders", tags=["Orders"])
-app.include_router(complaint_controller.router, prefix="/complaints", tags=["Complaints"])
-app.include_router(file_controller.router, prefix="/upload", tags=["File Uploads"])
+app.include_router(auth_controller.router,tags=["Auth"])
+app.include_router(user_controller.router, tags=["Users"])
+app.include_router(admin_controller.router,tags=["Admin"])
+app.include_router(product_controller.router,  tags=["Products"])
+app.include_router(cart_controller.router, tags=["Cart"])
+app.include_router(order_controller.router, tags=["Orders"])
+app.include_router(complaint_controller.router, tags=["Complaints"])
+app.include_router(file_controller.router, tags=["File Uploads"])
 
 # Run FastAPI Server
 if __name__ == "__main__":

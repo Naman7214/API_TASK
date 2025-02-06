@@ -19,7 +19,7 @@ class Settings:
     MONGO_URI: str = os.getenv("MONGO_URI")
     MONGO_DB: str = os.getenv("MONGO_DB", "ecommerce")
 
-
+    CLOUD_TOKEN: str = os.getenv("CLOUD_TOKEN")
     # Gmail API credentials
     
     GMAIL_API_CLIENT_SECRET: str = os.getenv("GMAIL_API_CLIENT_SECRET")

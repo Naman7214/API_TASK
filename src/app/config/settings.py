@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
+from google.oauth2.credentials import Credentials
 
+scopes = ["https://www.googleapis.com/"]
 # Load environment variables
 load_dotenv()
 
@@ -13,13 +15,16 @@ class Settings:
     JWT_ALGORITHM: str = "HS256"
     JWT_EXPIRATION: int = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 60))
 
-    # Google Cloud Storage
-    GCP_BUCKET_NAME: str = os.getenv("GCP_BUCKET_NAME")
-    GCP_CREDENTIALS_PATH: str = os.getenv("GCP_CREDENTIALS_PATH")
+    # MongoDB settings
+    MONGO_URI: str = os.getenv("MONGO_URI")
+    MONGO_DB: str = os.getenv("MONGO_DB", "ecommerce")
+
 
     # Gmail API credentials
+    
     GMAIL_API_CLIENT_SECRET: str = os.getenv("GMAIL_API_CLIENT_SECRET")
-
+    creds = Credentials.from_authorized_user_file(GMAIL_API_CLIENT_SECRET, scopes)
+    EmailCredentials = creds
     # Other settings
     DEBUG_MODE: bool = os.getenv("DEBUG_MODE", "False").lower() == "true"
 

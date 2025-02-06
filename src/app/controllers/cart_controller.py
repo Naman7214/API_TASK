@@ -3,10 +3,13 @@ from services.cart_services import CartService
 from repositories.cart_repository import CartRepository
 from models.schemas.cart_schema import CartItem
 from utils.security import get_current_user
+from config.database import get_database  
 
 router = APIRouter(prefix="/cart", tags=["Cart"])
+db = get_database()
+cart_collection = db["cart"]
 
-cart_service = CartService(CartRepository())
+cart_service = CartService(CartRepository(cart_collection))
 
 @router.post("/add")
 async def add_to_cart(cart_item: CartItem, user: dict = Depends(get_current_user)):

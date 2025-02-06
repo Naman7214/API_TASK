@@ -1,6 +1,6 @@
 import aiohttp
 from repositories.product_repository import ProductRepository
-from utils.file_handling import generate_product_pdf
+# from utils.file_handling import generate_product_pdf
 
 DUMMYJSON_URL = "https://dummyjson.com/products"
 
@@ -20,9 +20,9 @@ class ProductService:
                 for product in data.get("products", []):
                     await self.product_repo.add_product(product)
 
-    async def generate_product_pdf(self, product_id: str) -> bytes | None:
-        """Generate and return a PDF for product details."""
-        product = await self.product_repo.get_product_by_id(product_id)
-        if product:
-            return generate_product_pdf(product)
-        return None
+    # async def generate_product_pdf(self, product_id: str) -> bytes | None:
+    #     """Generate and return a PDF for product details."""
+    #     product = await self.product_repo.get_product_by_id(product_id)
+    #     if product:
+    #         return generate_product_pdf(product)
+    #     return None

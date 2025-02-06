@@ -3,10 +3,13 @@ from services.order_services import OrderService
 from repositories.order_repository import OrderRepository
 from models.schemas.order_schema import OrderCreate
 from utils.security import get_current_user
+from config.database import get_database  
+
 
 router = APIRouter(prefix="/orders", tags=["Orders"])
-
-order_service = OrderService(OrderRepository())
+db = get_database()
+order_collection = db["orders"]
+order_service = OrderService(OrderRepository(order_collection))
 
 @router.post("/")
 async def place_order(order_data: OrderCreate, user: dict = Depends(get_current_user)):

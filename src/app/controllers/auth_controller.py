@@ -16,10 +16,10 @@ async def register(user_data: UserRegister):
     """Registers a new user."""
 
 
-    hashed_password = auth_service.hash_password(user_data.password)
+    # hashed_password = auth_service.hash_password(user_data.password)
     
     user_dict = user_data.model_dump()
-    user_dict["password"] = hashed_password  # Replace plain password with hashed one
+    # user_dict["password"] = hashed_password  # Replace plain password with hashed one
 
     user_id = await auth_service.create_user(user_dict)
     

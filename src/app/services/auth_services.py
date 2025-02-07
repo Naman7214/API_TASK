@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import jwt
 from config.settings import settings
 from repositories.user_repository import UserRepository
+from nashx import nashCore
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -16,12 +17,17 @@ class AuthService:
 
     def hash_password(self, password: str) -> str:
         """Hash password using bcrypt."""
-        return pwd_context.hash(password)
+        # return pwd_context.hash(password)
+        print("Into hasher func",password)
+        return nashCore(password,16)
 
     def verify_password(self, plain_password: str, hashed_password: str) -> bool:
         """Verify hashed password."""
-        return pwd_context.verify(plain_password, hashed_password)
-
+        if nashCore(plain_password,16) == hashed_password:  
+            return True
+        else:
+            return False
+        
     def generate_jwt(self, user_id: str, role: str) -> str:
         """Generate JWT token."""
         payload = {
@@ -37,14 +43,17 @@ class AuthService:
         print(password)
     
         print(user['password'])
-        print("after hashing:", pwd_context.hash(password))
+        print("after hashing:", nashCore(password,16))
         if user and self.verify_password(password, user["password"]):
+            print("True")
             return user
         return None
     
     async def create_user(self, user_data: dict) -> dict:
         """Create a new user with hashed password."""
+        print(user_data['password'])
         hashed_password = self.hash_password(user_data["password"])
+        print(hashed_password)
         new_user = {
             "name": user_data["name"],
             "email": user_data["email"],
